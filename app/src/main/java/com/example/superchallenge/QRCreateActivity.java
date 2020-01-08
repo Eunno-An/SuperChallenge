@@ -20,7 +20,7 @@ public class QRCreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qr_create);
         iv = (ImageView)findViewById(R.id.qrcode);
         //text는 나중에 수정해야 함.
-        text = "https://park-duck.tistory.com";
+        text = "20rain UP!";
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try{
