@@ -17,7 +17,6 @@
         <activity android:name=".VoteDonationActivity" />
         <activity android:name=".FindMapActivity" />
         <activity android:name=".NotificationActivity" />
-        <activity android:name=".SavingActivity" />
         <activity android:name=".DonationActivity" />
         <activity android:name=".AlertSavingActivity" />
         <activity android:name=".QRScanActivity" />
