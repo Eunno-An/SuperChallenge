@@ -20,7 +20,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class LoginActivity  extends Activity {
-
     private SessionCallback callback;      //콜백 선언
 
     @Override
