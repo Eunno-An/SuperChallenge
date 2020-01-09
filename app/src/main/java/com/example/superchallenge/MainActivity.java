@@ -1,5 +1,6 @@
 package com.example.superchallenge;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -91,20 +92,28 @@ public class MainActivity extends AppCompatActivity {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_home) {//현재 Main화면
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_gallery) {//주변 시설 위치 확인
+            final Intent intent = new Intent(this, FindMapActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_slideshow) {//기부 투표
+            final Intent intent = new Intent(this, VoteDonationActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_tools) {//게시판(공지사항)
+            final Intent intent = new Intent(this, NotificationActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_share) {//아직 미정
 
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_send) {//아직 미정
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
