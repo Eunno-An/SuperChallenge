@@ -8,12 +8,16 @@
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:hardwareAccelerated="true">
-        <activity android:name=".QRCreateActivity"></activity>
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".QRCreateActivity" />
         <activity android:name=".VoteDonationActivity" />
         <activity android:name=".FindMapActivity" />
         <activity android:name=".NotificationActivity" />
@@ -21,22 +25,22 @@
         <activity android:name=".AlertSavingActivity" />
         <activity android:name=".QRScanActivity" />
         <activity android:name=".LoginActivity">
-            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation"/>
+            tools:replace="screenOrientation" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
         <activity android:name=".KakaoSignupActivity" />
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
