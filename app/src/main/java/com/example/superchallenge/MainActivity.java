@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity
     private Button QRButton;
     private AppBarConfiguration mAppBarConfiguration;
 
+    /*
+    * 서형 공백 추가
+    * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
