@@ -38,6 +38,7 @@
         <activity android:name=".AlertSavingActivity" />
         <activity android:name=".QRScanActivity" />
         <activity android:name=".LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
