@@ -24,13 +24,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener{
 
-
-
-
+    private Button QRButton;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -38,6 +37,13 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        QRButton=(Button)findViewById(R.id.scanQR);
+        QRButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, QRScanActivity.class);
+                startActivity(intent);
+            }
+        });
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +120,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_slideshow) {//기부 투표
-            final Intent intent = new Intent(this, VoteDonationActivity.class);
+            final Intent intent = new Intent(this, DonationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             finish();

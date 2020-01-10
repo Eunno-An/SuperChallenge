@@ -13,17 +13,28 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".DonationActivity"
+            android:label="@string/title_activity_donation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".NotificationActivity"
+            android:label="@string/title_activity_notification"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FindMapActivity"
+            android:label="@string/title_activity_find_map"
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".QRCreateActivity" />
-        <activity android:name=".VoteDonationActivity" />
-        <activity android:name=".FindMapActivity" />
-        <activity android:name=".NotificationActivity" />
-        <activity android:name=".DonationActivity" />
         <activity android:name=".AlertSavingActivity" />
         <activity android:name=".QRScanActivity" />
         <activity android:name=".LoginActivity">
@@ -41,10 +52,9 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBMtxtW01Xyp8LxU3CqpFs2kGH8mAzBDjA"/>
+            android:value="AIzaSyBMtxtW01Xyp8LxU3CqpFs2kGH8mAzBDjA" />
 
         <activity android:name=".KakaoSignupActivity" />
     </application>
