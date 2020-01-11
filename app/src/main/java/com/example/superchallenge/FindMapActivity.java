@@ -168,6 +168,7 @@ public class FindMapActivity extends AppCompatActivity
         super.onDestroy();
     }
 
+    /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Google Map Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
     @Override
     public void onResume() {
 
@@ -190,7 +191,6 @@ public class FindMapActivity extends AppCompatActivity
             }
         }
     }
-
     private void startLocationUpdates() {
 
         if (!checkLocationServicesStatus()) {
@@ -215,7 +215,6 @@ public class FindMapActivity extends AppCompatActivity
         }
 
     }
-
     private void stopLocationUpdates() {
 
         Log.d(TAG,"stopLocationUpdates : LocationServices.FusedLocationApi.removeLocationUpdates");
@@ -225,7 +224,6 @@ public class FindMapActivity extends AppCompatActivity
     public GoogleMap getGoogleMap(){
         return mGoogleMap;
     }
-
     public static final double byteArrayToDouble(byte[] bytes, int i1, int i2) {
         return ByteBuffer.wrap(Arrays.copyOfRange(bytes, i1, i2)).getDouble();
     }
@@ -318,8 +316,6 @@ public class FindMapActivity extends AppCompatActivity
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(INCHEON_INHAUNIV_HIGHTECH));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
     }
-
-
     @Override
     public void onLocationChanged(Location location) {
 
@@ -338,7 +334,6 @@ public class FindMapActivity extends AppCompatActivity
 
         mCurrentLocatiion = location;
     }
-
     @Override
     protected void onStart() {
 
@@ -350,7 +345,6 @@ public class FindMapActivity extends AppCompatActivity
 
         super.onStart();
     }
-
     @Override
     protected void onStop() {
 
@@ -368,7 +362,6 @@ public class FindMapActivity extends AppCompatActivity
 
         super.onStop();
     }
-
     @Override
     public void onConnected(Bundle connectionHint) {
 
@@ -402,14 +395,12 @@ public class FindMapActivity extends AppCompatActivity
             }
         }
     }
-
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
         Log.d(TAG, "onConnectionFailed");
         setDefaultLocation();
     }
-
     @Override
     public void onConnectionSuspended(int cause) {
 
@@ -461,7 +452,6 @@ public class FindMapActivity extends AppCompatActivity
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
-
     public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
 
         mMoveMapByUser = false;
@@ -489,7 +479,6 @@ public class FindMapActivity extends AppCompatActivity
             mGoogleMap.moveCamera(cameraUpdate);
         }
     }
-
     //여기부터는 런타임 퍼미션 처리을 위한 메소드들
     @TargetApi(Build.VERSION_CODES.M)
     private void checkPermissions() {
@@ -519,7 +508,6 @@ public class FindMapActivity extends AppCompatActivity
             }
         }
     }
-
     @Override
     public void onRequestPermissionsResult(int permsRequestCode,
                                            @NonNull String[] permissions,
@@ -547,8 +535,6 @@ public class FindMapActivity extends AppCompatActivity
             }
         }
     }
-
-
     @TargetApi(Build.VERSION_CODES.M)
     private void showDialogForPermission(String msg) {
 
@@ -571,7 +557,6 @@ public class FindMapActivity extends AppCompatActivity
         });
         builder.create().show();
     }
-
     private void showDialogForPermissionSetting(String msg) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(FindMapActivity.this);
@@ -597,8 +582,6 @@ public class FindMapActivity extends AppCompatActivity
         });
         builder.create().show();
     }
-
-
     //여기부터는 GPS 활성화를 위한 메소드들
     private void showDialogForLocationServiceSetting() {
 
@@ -623,8 +606,6 @@ public class FindMapActivity extends AppCompatActivity
         });
         builder.create().show();
     }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -671,6 +652,13 @@ public class FindMapActivity extends AppCompatActivity
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(DEFAULT_LOCATION, 15);
         mGoogleMap.moveCamera(cameraUpdate);
     }
+
+
+
+
+
+    /*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Google Map Function End↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
+
     final long INTERVAL_TIME = 1000;
     long previousTime = 0;
     @Override
