@@ -30,7 +30,7 @@
 
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false" />
+        android:required="false" />
 
         <activity
             android:name=".MainActivity"
@@ -53,7 +53,7 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
+            android:value="a727308250166c18fa342f7b459d17da" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBMtxtW01Xyp8LxU3CqpFs2kGH8mAzBDjA" />
