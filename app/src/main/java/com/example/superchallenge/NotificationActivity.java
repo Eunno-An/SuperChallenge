@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -24,18 +25,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 public class NotificationActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
-
+    private String strNickName;
+    private String strProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+        strNickName = intent.getStringExtra("name");
+        strProfile = intent.getStringExtra("profile");
+        Log.e("strNickName in donation", strNickName);
+        Log.e("strProfile in donation", strProfile);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +72,12 @@ public class NotificationActivity extends AppCompatActivity
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
+        navNickName.setText(strNickName);
+        TextView navProfile = (TextView)headerView.findViewById(R.id.email);
+        navProfile.setText(strProfile);
     }
 
 
@@ -100,16 +115,22 @@ public class NotificationActivity extends AppCompatActivity
         if (id == R.id.nav_home) {//현재 Main화면
             final Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_gallery) {//주변 시설 위치 확인
             final Intent intent = new Intent(this, FindMapActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_slideshow) {//기부 투표
             final Intent intent = new Intent(this, DonationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_tools) {//게시판(공지사항)

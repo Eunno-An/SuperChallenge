@@ -64,6 +64,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -108,6 +109,8 @@ public class FindMapActivity extends AppCompatActivity
     boolean mMoveMapByAPI = true;
     boolean mMoveMapByUser = true;
     private AppBarConfiguration mAppBarConfiguration;
+    private String strNickName;
+    private String strProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +118,11 @@ public class FindMapActivity extends AppCompatActivity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_find_map);
+
+        Intent intent = getIntent();
+        strNickName = intent.getStringExtra("name");
+        strProfile = intent.getStringExtra("profile");
+
 
         /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Google Map Start↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
 
@@ -159,7 +167,11 @@ public class FindMapActivity extends AppCompatActivity
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
-
+        View headerView = navigationView.getHeaderView(0);
+        TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
+        navNickName.setText(strNickName);
+        TextView navProfile = (TextView)headerView.findViewById(R.id.email);
+        navProfile.setText(strProfile);
     }
 
 
@@ -686,6 +698,8 @@ public class FindMapActivity extends AppCompatActivity
         if (id == R.id.nav_home) {//현재 Main화면
             final Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_gallery) {//주변 시설 위치 확인
@@ -693,11 +707,15 @@ public class FindMapActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {//기부 투표
             final Intent intent = new Intent(this, DonationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_tools) {//게시판(공지사항)
             final Intent intent = new Intent(this, NotificationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_share) {//아직 미정

@@ -35,6 +35,7 @@ public class DonationActivity extends AppCompatActivity
     private String strNickName;
     private String strProfile;
     private AppBarConfiguration mAppBarConfiguration;
+    private MainActivity userInfo; // userInfo object
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +44,10 @@ public class DonationActivity extends AppCompatActivity
 
 
         Intent intent = getIntent();
-        strNickName = intent.getStringExtra("name2");
-        strProfile = intent.getStringExtra("profile2");
-        Log.e("strNickName donation: ", strNickName);
-        Log.e("strProfile donation: ", strProfile);
+        strNickName = intent.getStringExtra("name");
+        strProfile = intent.getStringExtra("profile");
+        Log.e("strNickName in donation", strNickName);
+        Log.e("strProfile in donation", strProfile);
 
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -124,11 +125,15 @@ public class DonationActivity extends AppCompatActivity
         if (id == R.id.nav_home) {//현재 Main화면
             final Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_gallery) {//주변 시설 위치 확인
             final Intent intent = new Intent(this, FindMapActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_slideshow) {//기부 투표
@@ -136,6 +141,8 @@ public class DonationActivity extends AppCompatActivity
         } else if (id == R.id.nav_tools) {//게시판(공지사항)
             final Intent intent = new Intent(this, NotificationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_share) {//아직 미정

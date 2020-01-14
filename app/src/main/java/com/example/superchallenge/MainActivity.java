@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +125,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public String getStrNickName(){
+        return strNickName;
+    }
+    public String getStrProfile(){
+        return strProfile;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -155,16 +162,22 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {//주변 시설 위치 확인
             final Intent intent = new Intent(this, FindMapActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_slideshow) {//기부 투표
             final Intent intent = new Intent(this, DonationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_tools) {//게시판(공지사항)
             final Intent intent = new Intent(this, NotificationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("name", strNickName);
+            intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_share) {//아직 미정
