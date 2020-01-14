@@ -7,8 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Region;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -64,10 +66,15 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
@@ -83,7 +90,7 @@ public class FindMapActivity extends AppCompatActivity
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int UPDATE_INTERVAL_MS = 1000;  // 1초
     private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 0.5초
-
+    private Bitmap bitmap;//user Image
     // onRequestPermissionsResult에서 수신된 결과에서 ActivityCompat.requestPermissions를 사용한 퍼미션 요청을 구별하기 위해 사용됩니다.
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     boolean needRequest = false;
@@ -172,6 +179,41 @@ public class FindMapActivity extends AppCompatActivity
         navNickName.setText(strNickName);
         TextView navProfile = (TextView)headerView.findViewById(R.id.email);
         navProfile.setText(strProfile);
+
+        ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
+        GradientDrawable drawable = (GradientDrawable)getApplicationContext().getDrawable(R.drawable.custom_imageview);
+        imageView.setBackground(drawable);
+        imageView.setClipToOutline(true);
+
+
+        //안드로이드에서는 반드시 네트워크와 관련된 작업을 작업 Thread를 생성하여 해야 한다.
+        Thread mThread = new Thread(){
+            @Override
+            public void run(){
+                try{
+                    URL url = new URL(strProfile);
+                    //Web에서 이미지를 가져온 뒤
+                    //ImageView에 지정할 Bitmap을 만든다.
+                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                    conn.setDoInput(true);
+                    conn.connect();
+
+                    InputStream is = conn.getInputStream();
+                    bitmap = BitmapFactory.decodeStream(is);
+                }catch(MalformedURLException e){
+                    e.printStackTrace();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+        };
+        mThread.start();
+        try{
+            mThread.join();
+            imageView.setImageBitmap(bitmap);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
 

@@ -1,6 +1,11 @@
 package com.example.superchallenge;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,7 +38,15 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener{
@@ -42,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     private AppBarConfiguration mAppBarConfiguration;
     private String strNickName;
     private String strProfile;
+    private Bitmap bitmap;//user Image
     //navigation header부분 수정
 
     /*
@@ -111,8 +125,44 @@ public class MainActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
         navNickName.setText(strNickName);
-        TextView navProfile = (TextView)headerView.findViewById(R.id.email);
-        navProfile.setText(strProfile);
+        //TextView navProfile = (TextView)headerView.findViewById(R.id.email);
+        //navProfile.setText(strProfile);
+
+        //이미지 view 둥글게 만들기
+        //사전에 drawable에 resource파일 추가(custom_imageview.xml)
+        ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
+        GradientDrawable drawable = (GradientDrawable)getApplicationContext().getDrawable(R.drawable.custom_imageview);
+        imageView.setBackground(drawable);
+        imageView.setClipToOutline(true);
+
+        //안드로이드에서는 반드시 네트워크와 관련된 작업을 작업 Thread를 생성하여 해야 한다.
+        Thread mThread = new Thread(){
+            @Override
+            public void run(){
+                try{
+                    URL url = new URL(strProfile);
+                    //Web에서 이미지를 가져온 뒤
+                    //ImageView에 지정할 Bitmap을 만든다.
+                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                    conn.setDoInput(true);
+                    conn.connect();
+
+                    InputStream is = conn.getInputStream();
+                    bitmap = BitmapFactory.decodeStream(is);
+                }catch(MalformedURLException e){
+                    e.printStackTrace();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+        };
+        mThread.start();
+        try{
+            mThread.join();
+            imageView.setImageBitmap(bitmap);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -125,12 +175,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public String getStrNickName(){
-        return strNickName;
-    }
-    public String getStrProfile(){
-        return strProfile;
-    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

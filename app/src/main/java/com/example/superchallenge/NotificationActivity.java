@@ -1,6 +1,9 @@
 package com.example.superchallenge;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,7 +28,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class NotificationActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener{
@@ -33,6 +43,7 @@ public class NotificationActivity extends AppCompatActivity
     private AppBarConfiguration mAppBarConfiguration;
     private String strNickName;
     private String strProfile;
+    private Bitmap bitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +89,42 @@ public class NotificationActivity extends AppCompatActivity
         navNickName.setText(strNickName);
         TextView navProfile = (TextView)headerView.findViewById(R.id.email);
         navProfile.setText(strProfile);
+
+        ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
+        GradientDrawable drawable = (GradientDrawable)getApplicationContext().getDrawable(R.drawable.custom_imageview);
+        imageView.setBackground(drawable);
+        imageView.setClipToOutline(true);
+
+        //안드로이드에서는 반드시 네트워크와 관련된 작업을 작업 Thread를 생성하여 해야 한다.
+        Thread mThread = new Thread(){
+            @Override
+            public void run(){
+                try{
+                    URL url = new URL(strProfile);
+                    //Web에서 이미지를 가져온 뒤
+                    //ImageView에 지정할 Bitmap을 만든다.
+                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                    conn.setDoInput(true);
+                    conn.connect();
+
+                    InputStream is = conn.getInputStream();
+                    bitmap = BitmapFactory.decodeStream(is);
+                }catch(MalformedURLException e){
+                    e.printStackTrace();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+        };
+        mThread.start();
+        try{
+            mThread.join();
+            imageView.setImageBitmap(bitmap);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
     }
+
 
 
     @Override
