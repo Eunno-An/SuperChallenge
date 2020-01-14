@@ -1,5 +1,7 @@
 package com.example.superchallenge;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +23,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -32,6 +36,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -93,7 +98,7 @@ public class DonationActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
         //
-        navNickName.setText(strNickName);
+        navNickName.setText(strNickName +"님 환영합니다!");
         TextView navProfile = (TextView)headerView.findViewById(R.id.email);
         navProfile.setText(strProfile);
 
@@ -191,9 +196,29 @@ public class DonationActivity extends AppCompatActivity
             intent.putExtra("profile", strProfile);
             startActivity(intent);
             finish();
-        } else if (id == R.id.nav_share) {//아직 미정
+        }else if (id == R.id.nav_logout) {
+            new AlertDialog.Builder(DonationActivity.this)
+                    .setMessage("로그아웃 하시겠습니까?")
+                    .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).setPositiveButton("네", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getApplicationContext(), "정상적으로 로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_send) {//아직 미정
+                    UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+                        @Override
+                        public void onCompleteLogout() {
+                            Intent intent = new Intent(DonationActivity.this, LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                }
+            }).show();
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

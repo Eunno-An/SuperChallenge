@@ -36,7 +36,7 @@ public class LoginActivity  extends Activity {
 
         callback = new SessionCallback();                  // 이 두개의 함수 중요함
         Session.getCurrentSession().addCallback(callback);
-        //Session.getCurrentSession().checkAndImplicitOpen(); //자동 로그인
+        Session.getCurrentSession().checkAndImplicitOpen(); //자동 로그인
         //getHashKey();
     }
 
