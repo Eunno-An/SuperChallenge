@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity
         /*navigation의 header부분을 kakao API에서 얻어온 정보로 수정하기*/
         View headerView = navigationView.getHeaderView(0);
         TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
-        navNickName.setText(strNickName);
+        navNickName.setText(strNickName + "님 환영합니다!");
         //TextView navProfile = (TextView)headerView.findViewById(R.id.email);
         //navProfile.setText(strProfile);
 

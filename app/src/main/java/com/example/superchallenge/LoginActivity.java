@@ -104,19 +104,6 @@ public class LoginActivity  extends Activity {
                     Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
                     intentMain.putExtra("name", result.getNickname());
                     intentMain.putExtra("profile", result.getProfileImagePath());
-
-                    Intent intentDonation = new Intent(getApplicationContext(), DonationActivity.class);
-                    intentDonation.putExtra("name2", result.getNickname());
-                    intentDonation.putExtra("profile2", result.getProfileImagePath());
-
-                    Intent intentFindMap = new Intent(getApplicationContext(), FindMapActivity.class);
-                    intentFindMap.putExtra("name3", result.getNickname());
-                    intentFindMap.putExtra("profile3", result.getProfileImagePath());
-
-                    Intent intentNotification = new Intent(getApplicationContext(), NotificationActivity.class);
-                    intentNotification.putExtra("name4", result.getNickname());
-                    intentNotification.putExtra("profile4", result.getProfileImagePath());
-
                     startActivity(intentMain);
                     finish();
                 }

@@ -92,6 +92,7 @@ public class DonationActivity extends AppCompatActivity
         /*navigation의 header부분을 kakao API에서 얻어온 정보로 수정하기*/
         View headerView = navigationView.getHeaderView(0);
         TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
+        //
         navNickName.setText(strNickName);
         TextView navProfile = (TextView)headerView.findViewById(R.id.email);
         navProfile.setText(strProfile);
