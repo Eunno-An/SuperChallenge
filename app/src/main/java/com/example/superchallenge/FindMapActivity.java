@@ -180,7 +180,7 @@ public class FindMapActivity extends AppCompatActivity
         TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
         navNickName.setText(strNickName + "님 환영합니다!");
         TextView navProfile = (TextView)headerView.findViewById(R.id.email);
-        navProfile.setText(strProfile);
+        //navProfile.setText(strProfile);
 
         ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
         GradientDrawable drawable = (GradientDrawable)getApplicationContext().getDrawable(R.drawable.custom_imageview);

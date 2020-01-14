@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
         navNickName.setText(strNickName + "님 환영합니다!");
-        //TextView navProfile = (TextView)headerView.findViewById(R.id.email);
+        TextView navProfile = (TextView)headerView.findViewById(R.id.email);
         //navProfile.setText(strProfile);
 
         //이미지 view 둥글게 만들기

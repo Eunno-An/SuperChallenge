@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/email"
-        android:text="프로필 url: "
+        android:text=""
         android:textStyle="bold"
         android:textColor="@color/babyBrown"
         android:layout_width="wrap_content"
