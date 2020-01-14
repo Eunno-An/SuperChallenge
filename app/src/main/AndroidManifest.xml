@@ -5,11 +5,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name=".GlobalApplication"
+        android:name=".App"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +18,7 @@
         <activity
             android:name=".DonationActivity"
             android:label="@string/title_activity_donation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NotificationActivity"
             android:label="@string/title_activity_notification"
@@ -41,7 +40,6 @@
         <activity android:name=".AlertSavingActivity" />
         <activity android:name=".QRScanActivity" />
         <activity android:name=".LoginActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,7 +58,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBMtxtW01Xyp8LxU3CqpFs2kGH8mAzBDjA" />
 
-        <activity android:name=".KakaoSignupActivity" />
     </application>
 
 </manifest>

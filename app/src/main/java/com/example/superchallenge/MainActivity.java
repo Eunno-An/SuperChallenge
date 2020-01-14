@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -17,6 +18,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.kakao.auth.ISessionCallback;
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.MeResponseCallback;
+import com.kakao.usermgmt.response.model.UserProfile;
+import com.kakao.util.exception.KakaoException;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -26,21 +33,40 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener{
 
     private Button QRButton;
     private AppBarConfiguration mAppBarConfiguration;
+    private String strNickName;
+    private String strProfile;
+    //navigation header부분 수정
 
     /*
     * 서형 공백 추가
-    * */
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+        //nickNameTextView = findViewById(R.id.nickName_main);
+        //emailTextView = findViewById(R.id.email_main);
+
+        /*intent를 통해 정보 넘겨받음*/
+        Intent intent = getIntent();
+        strNickName = intent.getStringExtra("name");
+        strProfile = intent.getStringExtra("profile");
+        Log.e("strNickName: ", strNickName);
+        Log.e("strProfile: ", strProfile);
+
+        //strProfile = intent.getStringExtra("profile");
+        //navNickName.setText(strNickName);
+        //nickNameTextView.setText(strNickName);
+        //emailTextView.setText(strProfile);
 
         QRButton=(Button)findViewById(R.id.scanQR);
         QRButton.setOnClickListener(new View.OnClickListener(){
@@ -49,6 +75,8 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +106,12 @@ public class MainActivity extends AppCompatActivity
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        /*navigation의 header부분을 kakao API에서 얻어온 정보로 수정하기*/
+        View headerView = navigationView.getHeaderView(0);
+        TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
+        navNickName.setText(strNickName);
+        TextView navProfile = (TextView)headerView.findViewById(R.id.email);
+        navProfile.setText(strProfile);
     }
 
     @Override

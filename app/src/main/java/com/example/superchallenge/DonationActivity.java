@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -25,17 +26,27 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.GridView;
+import android.widget.TextView;
 
 public class DonationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
+    private String strNickName;
+    private String strProfile;
     private AppBarConfiguration mAppBarConfiguration;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+
+        Intent intent = getIntent();
+        strNickName = intent.getStringExtra("name2");
+        strProfile = intent.getStringExtra("profile2");
+        Log.e("strNickName donation: ", strNickName);
+        Log.e("strProfile donation: ", strProfile);
 
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -66,7 +77,12 @@ public class DonationActivity extends AppCompatActivity
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        /*navigation의 header부분을 kakao API에서 얻어온 정보로 수정하기*/
+        View headerView = navigationView.getHeaderView(0);
+        TextView navNickName = (TextView)headerView.findViewById(R.id.nickName);
+        navNickName.setText(strNickName);
+        TextView navProfile = (TextView)headerView.findViewById(R.id.email);
+        navProfile.setText(strProfile);
     }
 
     @Override

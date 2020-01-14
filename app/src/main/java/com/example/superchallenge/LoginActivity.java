@@ -10,9 +10,15 @@ import android.content.pm.Signature;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.kakao.auth.ApiErrorCode;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.MeV2ResponseCallback;
+import com.kakao.usermgmt.response.MeV2Response;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.log.Logger;
 
@@ -30,7 +36,8 @@ public class LoginActivity  extends Activity {
 
         callback = new SessionCallback();                  // 이 두개의 함수 중요함
         Session.getCurrentSession().addCallback(callback);
-        getHashKey();
+        //Session.getCurrentSession().checkAndImplicitOpen(); //자동 로그인
+        //getHashKey();
     }
 
     private void getHashKey(){
@@ -74,21 +81,55 @@ public class LoginActivity  extends Activity {
 
         @Override
         public void onSessionOpened() {
-            redirectSignupActivity();  // 세션 연결성공 시 redirectSignupActivity() 호출
+            UserManagement.getInstance().me(new MeV2ResponseCallback() {
+                @Override
+                public void onFailure(ErrorResult errorResult) {
+                    int result = errorResult.getErrorCode();
+
+                    if(result == ApiErrorCode.CLIENT_ERROR_CODE) {
+                        Toast.makeText(getApplicationContext(), "네트워크 연결이 불안정합니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(),"로그인 도중 오류가 발생했습니다: "+errorResult.getErrorMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onSessionClosed(ErrorResult errorResult) {
+                    Toast.makeText(getApplicationContext(),"세션이 닫혔습니다. 다시 시도해 주세요: "+errorResult.getErrorMessage(),Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onSuccess(MeV2Response result) {
+                    Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
+                    intentMain.putExtra("name", result.getNickname());
+                    intentMain.putExtra("profile", result.getProfileImagePath());
+
+                    Intent intentDonation = new Intent(getApplicationContext(), DonationActivity.class);
+                    intentDonation.putExtra("name2", result.getNickname());
+                    intentDonation.putExtra("profile2", result.getProfileImagePath());
+
+                    Intent intentFindMap = new Intent(getApplicationContext(), FindMapActivity.class);
+                    intentFindMap.putExtra("name3", result.getNickname());
+                    intentFindMap.putExtra("profile3", result.getProfileImagePath());
+
+                    Intent intentNotification = new Intent(getApplicationContext(), NotificationActivity.class);
+                    intentNotification.putExtra("name4", result.getNickname());
+                    intentNotification.putExtra("profile4", result.getProfileImagePath());
+
+                    startActivity(intentMain);
+                    finish();
+                }
+            });
         }
         @Override
         public void onSessionOpenFailed(KakaoException exception) {
             if(exception != null) {
                 Logger.e(exception);
             }
-            setContentView(R.layout.activity_login); // 세션 연결이 실패했을때
+            Toast.makeText(getApplicationContext(), "로그인 도중 오류가 발생했습니다. 인터넷 연결을 확인해주세요: "+exception.toString(), Toast.LENGTH_SHORT).show(); // 세션 연결이 실패했을때
         }                                            // 로그인화면을 다시 불러옴
     }
 
-    protected void redirectSignupActivity() {       //세션 연결 성공 시 SignupActivity로 넘김
-        final Intent intent = new Intent(this, KakaoSignupActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        finish();
-    }
+
 }
