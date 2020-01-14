@@ -41,6 +41,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +56,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener{
 
-    private Button QRButton;
+    private ImageButton QRButton;
     private AppBarConfiguration mAppBarConfiguration;
     private String strNickName;
     private String strProfile;
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         //nickNameTextView.setText(strNickName);
         //emailTextView.setText(strProfile);
 
-        QRButton=(Button)findViewById(R.id.scanQR);
+        QRButton=(ImageButton)findViewById(R.id.scanQR);
         QRButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this, QRScanActivity.class);
