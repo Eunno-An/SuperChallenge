@@ -133,17 +133,22 @@ public class NotificationActivity extends AppCompatActivity
         }
 
 
-//임시 데이터 100개 생성
+        //리스트 아이템 설정
         /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
-        String[] strDate = {"2017-01-03", "1965-02-23", "2016-04-13", "2010-01-01", "2017-06-20",
-                "2012-07-08", "1980-04-14", "2016-09-26", "2014-10-11", "2010-12-24"};
+        String[] strDate = {"2020-01-09", "2020-01-09", "2020-01-09", "2020-01-10", "2020-01-10",
+                "2020-01-11", "2020-01-11", "2020-01-14", "2020-01-14"};
+        String[] title = {"메뉴 UI 개선 [1.5.0] 안내", "구글 맵으로 주변 위치 확인 [1.5.1] 업데이트", "QR 코드 이미지 변경 [1.5.2] 안내", "메뉴 UI 개선 [1.6.0] 안내", "현재 위치 추적 기능 업데이트"
+            ,"구글 맵 icon & 상태 바 color UI 개선 [1.6.1] 안내", "1천만 번째 \"털다\" 회원님을 맞이하며", "로그아웃 기능 추가 [1.7.0]", "카카오톡 내 정보 불러오기 추가[1.7.1]"
+        };
         int nDatCnt=0;
         ArrayList<NoticeListItem> oData = new ArrayList<>();
+        for(int i=strDate.length-1; i>=0; i--){
+            NoticeListItem oItem = new NoticeListItem();
+            oItem.strTitle = title[i];
+            oItem.strDate = strDate[i];
+            oData.add(oItem);
+        }
 
-        NoticeListItem oItem = new NoticeListItem();
-        oItem.strTitle = "대한민국에 부는 에코 ";
-        oItem.strDate = strDate[nDatCnt++];
-        oData.add(oItem);
 
 
         m_oListView = (ListView)findViewById(R.id.noticeListView);

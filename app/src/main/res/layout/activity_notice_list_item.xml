@@ -30,7 +30,7 @@
             android:paddingLeft="10dp"
             android:text="제목"
             android:textColor="#000000"
-            android:textStyle="bold" />
+            />
 
     </LinearLayout>
 
