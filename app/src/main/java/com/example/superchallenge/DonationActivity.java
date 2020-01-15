@@ -105,7 +105,7 @@ public class DonationActivity extends AppCompatActivity
         ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
         GradientDrawable drawable = (GradientDrawable)getApplicationContext().getDrawable(R.drawable.custom_imageview);
         imageView.setBackground(drawable);
-        imageView.setClipToOutline(true);
+
 
         //안드로이드에서는 반드시 네트워크와 관련된 작업을 작업 Thread를 생성하여 해야 한다.
         Thread mThread = new Thread(){
@@ -132,7 +132,7 @@ public class DonationActivity extends AppCompatActivity
         try{
             mThread.join();
             imageView.setImageBitmap(bitmap);
-        }catch(InterruptedException e){
+        }catch(InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -220,7 +220,6 @@ public class DonationActivity extends AppCompatActivity
                 }
             }).show();
 
-        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

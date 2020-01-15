@@ -19,5 +19,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
+     <GridView
+         android:id="@+id/gridView1"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentTop="true"
+         android:verticalSpacing="10dp"
+         android:horizontalSpacing="10dp"
+         android:stretchMode="columnWidth"
+         android:numColumns="2"
+         >
+
+       </GridView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
