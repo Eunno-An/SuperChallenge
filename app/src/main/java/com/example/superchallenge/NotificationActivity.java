@@ -139,14 +139,13 @@ public class NotificationActivity extends AppCompatActivity
                 "2012-07-08", "1980-04-14", "2016-09-26", "2014-10-11", "2010-12-24"};
         int nDatCnt=0;
         ArrayList<NoticeListItem> oData = new ArrayList<>();
-        for (int i=0; i<1000; ++i)
-        {
-            NoticeListItem oItem = new NoticeListItem();
-            oItem.strTitle = "데이터 " + (i+1);
-            oItem.strDate = strDate[nDatCnt++];
-            oData.add(oItem);
-            if (nDatCnt >= strDate.length) nDatCnt = 0;
-        }
+
+        NoticeListItem oItem = new NoticeListItem();
+        oItem.strTitle = "대한민국에 부는 에코 ";
+        oItem.strDate = strDate[nDatCnt++];
+        oData.add(oItem);
+
+
         m_oListView = (ListView)findViewById(R.id.noticeListView);
         NoticeListViewAdapter oAdapter = new NoticeListViewAdapter(oData);
         m_oListView.setAdapter(oAdapter);

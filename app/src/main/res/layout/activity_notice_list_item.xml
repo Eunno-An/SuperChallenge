@@ -6,41 +6,37 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="80dp"
         android:layout_weight="75"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textDate"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_weight="15"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="날짜"
+            android:textSize="10dp" />
 
         <TextView
             android:id="@+id/textTitle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="제목"
             android:layout_weight="60"
+
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:textStyle="bold"
-            android:textColor="#33aabb"
-            />
-        <TextView
-            android:id="@+id/textDate"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="날짜"
-            android:layout_weight="40"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            />
+            android:text="제목"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:text="보기"
-        android:layout_weight="20"
-        />
+
     <View
-        android:layout_width="0dp"
+        android:layout_width="17dp"
         android:layout_height="match_parent"
-        android:layout_weight="0"
-        />
+        android:layout_weight="0" />
 </LinearLayout>
