@@ -40,7 +40,11 @@ public class SlideAdapter extends PagerAdapter {
         Color.rgb(239,85,85),
         Color.rgb(238,223,204),
         Color.rgb(127,255,212)
-};
+    };
+    // list of page
+    public String[] lst_page = {
+            "1/4","2/4","3/4","4/4"
+    };
 
 public SlideAdapter(Context context) {
         this.context = context;
@@ -64,10 +68,12 @@ public int getCount() {
         ImageView imgslide  = (ImageView) view.findViewById(R.id.slideimag);
         TextView txttitle = (TextView) view.findViewById(R.id.txttitle);
         TextView description = (TextView) view.findViewById(R.id.txtdescription);
+        TextView page = (TextView) view.findViewById((R.id.page));
         layoutslide.setBackgroundColor(lst_backgroundcolor[position]);
         imgslide.setImageResource(lst_images[position]);
         txttitle.setText(lst_title[position]);
         description.setText(lst_description[position]);
+        page.setText((lst_page[position]));
         container.addView(view);
         return view;
     }
