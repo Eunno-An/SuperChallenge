@@ -9,22 +9,22 @@ import android.widget.TextView;
 
 public class ContentDonationItemActivity extends AppCompatActivity {
 
-    TextView title;
-    TextView content;
-    ImageView icon;
+    TextView text1;
+    TextView text2;
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_donation_item);
 
-        title = findViewById(R.id.item_title);
-        content = findViewById(R.id.item_content);
-        icon = findViewById(R.id.item_icon);
+        text1 = findViewById(R.id.title_data);
+        text2 = findViewById(R.id.content_data);
+        image = findViewById(R.id.image_data);
 
         Intent intent = getIntent();
-        title.setText(intent.getStringExtra("Test"));
-        content.setText(intent.getStringExtra("Teeesssttt"));
-        icon.setImageResource(intent.getIntExtra("test_image", 0));
+        text1.setText(intent.getStringExtra("text1"));
+        text2.setText(intent.getStringExtra("content"));
+        image.setImageResource(intent.getIntExtra("image", 0));
     }
 }

@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/gridviewdata"
         android:layout_width="190dp"
         android:layout_height="180dp"
         android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
         android:background="#EFEFEF"
         >
 
@@ -22,24 +18,28 @@
             android:src="@drawable/test_image"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
             />
 
         <TextView
             android:id="@+id/titles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="center"
+            android:layout_below="@+id/images"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
             android:text="제에에목"
             android:textStyle="bold"
-            android:textSize="25dp"
+            android:textSize="20dp"
             />
 
         <TextView
             android:id="@+id/contents"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/titles"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
             android:text="내용이다 이것은 내용입니다 진짜 내용 들어갈 자리입니다."
             android:textSize="15dp"
             />
@@ -77,6 +77,6 @@
             />
 -->
 
-    </LinearLayout>
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

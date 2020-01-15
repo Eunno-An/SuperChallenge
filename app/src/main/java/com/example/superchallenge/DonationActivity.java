@@ -32,6 +32,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -52,6 +55,14 @@ public class DonationActivity extends AppCompatActivity
     private AppBarConfiguration mAppBarConfiguration;
     private MainActivity userInfo; // userInfo object
     private Bitmap bitmap;
+
+    /*수민 추가*/
+    GridView gridView;
+
+    String[] donationTitles = {"제목1", "제목2"};
+    String[] donationContents = {"내용1", "내용2"};
+    int[] donationImages = {R.drawable.test_image, R.drawable.test_image};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +117,24 @@ public class DonationActivity extends AppCompatActivity
         GradientDrawable drawable = (GradientDrawable)getApplicationContext().getDrawable(R.drawable.custom_imageview);
         imageView.setBackground(drawable);
 
+        /*수민 추가*/
+        /*그리드뷰 작업*/
+        gridView = findViewById(R.id.donationGridView);
 
+        CustomAdapter customAdapter = new CustomAdapter();
+        gridView.setAdapter(customAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ContentDonationItemActivity.class);
+                intent.putExtra("title", donationTitles[position]);
+                intent.putExtra("content", donationContents[position]);
+                intent.putExtra("image", donationImages[position]);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
         //안드로이드에서는 반드시 네트워크와 관련된 작업을 작업 Thread를 생성하여 해야 한다.
         Thread mThread = new Thread(){
             @Override
@@ -219,7 +247,7 @@ public class DonationActivity extends AppCompatActivity
                     });
                 }
             }).show();
-
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -230,5 +258,40 @@ public class DonationActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    /* 수민 추가*/
+    /*Grid View Adapter*/
+    private class CustomAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return donationImages.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view1 = getLayoutInflater().inflate(R.layout.donation_data, null);
+
+            TextView title = view1.findViewById(R.id.titles);
+            TextView content = view1.findViewById(R.id.contents);
+            ImageView image = view1.findViewById(R.id.images);
+
+            title.setText(donationTitles[position]);
+            content.setText(donationContents[position]);
+            image.setImageResource(donationImages[position]);
+
+            return view1;
+        }
     }
 }
