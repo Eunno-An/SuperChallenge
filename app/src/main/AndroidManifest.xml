@@ -7,7 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+
     <application
+        
         android:name=".App"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -58,6 +60,12 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBMtxtW01Xyp8LxU3CqpFs2kGH8mAzBDjA" />
+
+
+
     </application>
+
+
+
 
 </manifest>

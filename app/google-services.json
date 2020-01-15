@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "6157883684",
+    "firebase_url": "https://superchallenge-80d7c.firebaseio.com",
+    "project_id": "superchallenge-80d7c",
+    "storage_bucket": "superchallenge-80d7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6157883684:android:6d403f7c8e27c06b43bbb1",
+        "android_client_info": {
+          "package_name": "com.example.superchallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6157883684-p8tubeld3qr0bom7apdjefite6hoskc0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.superchallenge",
+            "certificate_hash": "a05e0839aed92c9187001f7397459dabb6b51bb8"
+          }
+        },
+        {
+          "client_id": "6157883684-s4crovti1b2cq51pj6akg6nj44d1rn84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3P5psQVHsap27nWUgQ36AQtubkbnyiRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6157883684-s4crovti1b2cq51pj6akg6nj44d1rn84.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
