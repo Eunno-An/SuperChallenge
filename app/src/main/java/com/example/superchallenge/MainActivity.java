@@ -26,6 +26,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity
     private Bitmap bitmap;//user Image
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference("message");
+    private DatabaseReference databaseReference;
     //navigation header부분 수정
 
     /*
@@ -94,6 +95,10 @@ public class MainActivity extends AppCompatActivity
         userID = intent.getLongExtra("id", userID);
         struserID = Long.toString(userID);
 
+        //Firebase로부터 userID에 해당하는 count를 불러옴
+        databaseReference = firebaseDatabase.getReference(struserID);
+
+
         Log.e("strNickName: ", strNickName);
         Log.e("strProfile: ", strProfile);
         Log.e("strUserID: ", struserID);
@@ -107,6 +112,8 @@ public class MainActivity extends AppCompatActivity
         QRButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this, QRScanActivity.class);
+                intent.putExtra("userID", struserID);
+                intent.putExtra("count", userCount);
                 startActivity(intent);
             }
         });
@@ -150,11 +157,6 @@ public class MainActivity extends AppCompatActivity
         //writeUser(struserID, userCount);
 
 
-        //↓↓↓↓↓↓↓↓↓↓↓fire base로 유저 정보를 입력하는 부분↓↓↓↓↓↓↓↓↓↓↓↓↓
-        //databaseReference.setValue("eunno");
-
-
-        //↑↑↑↑↑↑↑↑↑↑↑fire base로 유저 정보를 입력하는 부분 끝 ↑↑↑↑↑↑↑↑↑↑↑↑
         //이미지 view 둥글게 만들기
         //사전에 drawable에 resource파일 추가(custom_imageview.xml)
         ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
@@ -191,27 +193,13 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("DataBase", "Value is: " + value);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w("Hello", "Failed to read value.", databaseError.toException());
-            }
-        });
 
     }
 
 
 
-    public void writeUser(String userID, int count){
-        User user = new User(userID, count);
-        databaseReference.child("userInfo").child("88aHLqEBCczXmCUzFB5N").setValue(user);
-    }
+
 
     @Override
     public void onBackPressed() {
