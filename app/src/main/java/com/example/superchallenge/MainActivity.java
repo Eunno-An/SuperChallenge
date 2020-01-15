@@ -148,7 +148,13 @@ public class MainActivity extends AppCompatActivity
         //navProfile.setText(strProfile);
 
         //writeUser(struserID, userCount);
-        databaseReference.setValue("eunno");
+
+
+        //↓↓↓↓↓↓↓↓↓↓↓fire base로 유저 정보를 입력하는 부분↓↓↓↓↓↓↓↓↓↓↓↓↓
+        //databaseReference.setValue("eunno");
+
+
+        //↑↑↑↑↑↑↑↑↑↑↑fire base로 유저 정보를 입력하는 부분 끝 ↑↑↑↑↑↑↑↑↑↑↑↑
         //이미지 view 둥글게 만들기
         //사전에 drawable에 resource파일 추가(custom_imageview.xml)
         ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
