@@ -35,8 +35,11 @@ public class QRScanActivity extends AppCompatActivity {
                 finish();
                 // todo
             } else {
+                //qr코드 인식 시 디비 갱신
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 final Intent intent = new Intent(this, AlertSavingActivity.class);
+
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
