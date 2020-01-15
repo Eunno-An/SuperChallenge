@@ -33,6 +33,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class NotificationActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener{
@@ -49,6 +51,7 @@ public class NotificationActivity extends AppCompatActivity
     private String strNickName;
     private String strProfile;
     private Bitmap bitmap;
+    private ListView m_oListView = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +131,25 @@ public class NotificationActivity extends AppCompatActivity
         }catch(InterruptedException e){
             e.printStackTrace();
         }
+
+
+//임시 데이터 100개 생성
+        /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+        String[] strDate = {"2017-01-03", "1965-02-23", "2016-04-13", "2010-01-01", "2017-06-20",
+                "2012-07-08", "1980-04-14", "2016-09-26", "2014-10-11", "2010-12-24"};
+        int nDatCnt=0;
+        ArrayList<NoticeListItem> oData = new ArrayList<>();
+        for (int i=0; i<1000; ++i)
+        {
+            NoticeListItem oItem = new NoticeListItem();
+            oItem.strTitle = "데이터 " + (i+1);
+            oItem.strDate = strDate[nDatCnt++];
+            oData.add(oItem);
+            if (nDatCnt >= strDate.length) nDatCnt = 0;
+        }
+        m_oListView = (ListView)findViewById(R.id.noticeListView);
+        NoticeListViewAdapter oAdapter = new NoticeListViewAdapter(oData);
+        m_oListView.setAdapter(oAdapter);
     }
 
 
