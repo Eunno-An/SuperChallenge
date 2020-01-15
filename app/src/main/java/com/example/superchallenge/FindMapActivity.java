@@ -294,6 +294,7 @@ public class FindMapActivity extends AppCompatActivity
         LatLng INCHEON_INHAUNIV_HIGHTECH = new LatLng(37.450686, 126.657126);
         LatLng INCHEON_INHAUNIV_5ARCH = new LatLng(37.451351, 126.653924);
         LatLng INCHEON_INHAUNIV_JEONGSEK = new LatLng(37.449426, 126.652536);
+        //35.101004, 126.939310 상빈이네 나중에 추가하기
 
         //구글 맵 마커에 대한 옵션 설정
         MarkerOptions markerOptions0 = new MarkerOptions();

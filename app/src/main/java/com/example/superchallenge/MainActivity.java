@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
@@ -25,6 +26,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
@@ -60,7 +66,13 @@ public class MainActivity extends AppCompatActivity
     private AppBarConfiguration mAppBarConfiguration;
     private String strNickName;
     private String strProfile;
+    private long userID;
+    private int userCount=0;
+    private String struserID;
     private Bitmap bitmap;//user Image
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference("message");
     //navigation header부분 수정
 
     /*
@@ -79,8 +91,12 @@ public class MainActivity extends AppCompatActivity
         Intent intent = getIntent();
         strNickName = intent.getStringExtra("name");
         strProfile = intent.getStringExtra("profile");
+        userID = intent.getLongExtra("id", userID);
+        struserID = Long.toString(userID);
+
         Log.e("strNickName: ", strNickName);
         Log.e("strProfile: ", strProfile);
+        Log.e("strUserID: ", struserID);
 
         //strProfile = intent.getStringExtra("profile");
         //navNickName.setText(strNickName);
@@ -94,8 +110,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-
 
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -133,6 +147,8 @@ public class MainActivity extends AppCompatActivity
         TextView navProfile = (TextView)headerView.findViewById(R.id.email);
         //navProfile.setText(strProfile);
 
+        //writeUser(struserID, userCount);
+        databaseReference.setValue("eunno");
         //이미지 view 둥글게 만들기
         //사전에 drawable에 resource파일 추가(custom_imageview.xml)
         ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
@@ -169,8 +185,26 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("DataBase", "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Hello", "Failed to read value.", databaseError.toException());
+            }
+        });
+
+    }
 
 
+
+    public void writeUser(String userID, int count){
+        User user = new User(userID, count);
+        databaseReference.child("userInfo").child("88aHLqEBCczXmCUzFB5N").setValue(user);
     }
 
     @Override
