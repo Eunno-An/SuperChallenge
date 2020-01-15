@@ -26,7 +26,6 @@
         android:columnWidth="10dp"
         android:numColumns="2"
         android:stretchMode="columnWidth"
-        android:background="#efefef"
         android:verticalSpacing="1dp"
         />
 

@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/images"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:text="제에에목"
             android:textStyle="bold"
             android:textSize="20dp"
@@ -43,39 +43,6 @@
             android:text="내용이다 이것은 내용입니다 진짜 내용 들어갈 자리입니다."
             android:textSize="15dp"
             />
-        <!--
-
-        <ImageView
-            android:id="@+id/item_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/test_image"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            />
-        <TextView
-            android:id="@+id/item_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:text="Test Title"
-            android:layout_marginBottom="5dp"
-            />
-
-        <TextView
-            android:id="@+id/item_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:layout_gravity="center"
-            android:text="This is Test Content.\nAndroid Studio is too difficult."
-            />
--->
 
     </RelativeLayout>
 
