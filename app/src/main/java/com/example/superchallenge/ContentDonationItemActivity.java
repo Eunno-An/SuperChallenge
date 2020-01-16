@@ -64,7 +64,7 @@ public class ContentDonationItemActivity extends AppCompatActivity {
         title1.setText(intent.getStringExtra("title"));
         title2.setText(intent.getStringExtra("title"));
         content.setText(intent.getStringExtra("content"));
-        image.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
+        image.setColorFilter(Color.parseColor("#B0B0B0"), PorterDuff.Mode.MULTIPLY);
 
         rainPointTextView = findViewById(R.id.myrainpoint);
         databaseUserInfo = FirebaseDatabase.getInstance().getReference();
