@@ -8,9 +8,9 @@
         android:layout_width="170dp"
         android:layout_height="140dp"
         android:orientation="vertical"
-        android:background="@drawable/round_border"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
+        android:background="@drawable/donation_round_border"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_marginBottom="4dp"
         >
 

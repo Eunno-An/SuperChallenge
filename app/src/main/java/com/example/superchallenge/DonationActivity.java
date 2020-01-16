@@ -61,7 +61,9 @@ public class DonationActivity extends AppCompatActivity
 
     String[] donationTitles = {"제목1", "제목2", "제목3"};
     String[] donationContents = {"내용이지롱 내용이지롱 내용이지롱 내용내용내용 깔깔깔깔", "이것은 두 번째 내용이다 내용에 뭘 넣어야 잘 넣었다고 소문이 날까 사실 소문이 안 나",
-            "쿄쿄쿄쿄쿄쿄쿄쿄쿄쿄쿄쿄쿄"};
+            "이 편지는 영국에서 최초로 시작되어 일년에 한바퀴 돌면서 받는 사람에게 행운을 주었고 지금은 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다.\n\n" +
+                    "뽀로로와 펭수의 고향 남극에서 기후 변화로 인해 펭귄이 멸종될 수도 있다는 슬픈 소식이 들려옵니다. 기부를 해서 B.JoA에게 돈을 주십시오. 돈 내놔 돈!\n" +
+                    "근데 아직도 사연 길이가 너무 짧다... 얼마나 길게 해야 그럴싸할까..."};
     String[] donationExplanation = {"1번 기부", "2번 기부", "3번 기부"};
     int[] donationImages = {R.drawable.test_image, R.drawable.test_image, R.drawable.test_image};
 

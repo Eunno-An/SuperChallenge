@@ -1,46 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:gravity="center"
+    android:fillViewport="true"
     tools:context=".ContentDonationItemActivity">
-
-    <ImageView
-        android:id="@+id/image_data"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/test_image"
-        />
-
-    <TextView
-        android:id="@+id/title_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:text="TITLE"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/content_data"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/relativeLayout1"
+            android:background="@drawable/donation_layout_border"
+            >
+
+            <ImageView
+                android:id="@+id/image_data"
+                android:layout_width="match_parent"
+                android:layout_height="198dp"
+                android:layout_marginTop="1dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/test_image">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/title_data1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="TITLE"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+
+                android:shadowColor="#7F7F7F"
+                android:shadowDx="3"
+                android:shadowDy="2"
+                android:shadowRadius="1.5"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:text="This is Content. This is Content. This is Content."
-            android:textSize="18dp"
-            />
+            >
+            <TextView
+                android:id="@+id/title_data2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="TITLE"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="#3D3D3D"/>
+
+            <TextView
+                android:id="@+id/content_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="This is Content. This is Content. This is Content."
+                android:textSize="18dp"
+                android:textColor="#404040"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/donation_layout_border"
+            >
+
+            <TextView
+                android:id="@+id/donation_text_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="12dp"
+                android:text="기부하기"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#3D3D3D"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp">
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:hint="기부할 Rain 입력"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Rain"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    />
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="/"
+                    android:gravity="center"
+                    />
+
+                <!--
+                이 TextView에 유저가 현재 갖고 있는 총 적립금 수가 들어가야 함!-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="60dp"
+                    android:gravity="center|right"
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="12dp"
+                    android:gravity="center|right"
+                    android:text="Rain"
+                    />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/donation_button_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="10dp"
+                android:text="기부"
+                android:textStyle="bold"
+                android:textColor="#5A381D"
+                android:textSize="20dp"
+                android:background="@drawable/donation_btn_border"
+                />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</ScrollView>
