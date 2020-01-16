@@ -59,9 +59,11 @@ public class DonationActivity extends AppCompatActivity
     /*수민 추가*/
     GridView gridView;
 
-    String[] donationTitles = {"제목1", "제목2"};
-    String[] donationContents = {"내용1", "내용2"};
-    int[] donationImages = {R.drawable.test_image, R.drawable.test_image};
+    String[] donationTitles = {"제목1", "제목2", "제목3"};
+    String[] donationContents = {"내용이지롱 내용이지롱 내용이지롱 내용내용내용 깔깔깔깔", "이것은 두 번째 내용이다 내용에 뭘 넣어야 잘 넣었다고 소문이 날까 사실 소문이 안 나",
+            "쿄쿄쿄쿄쿄쿄쿄쿄쿄쿄쿄쿄쿄"};
+    String[] donationExplanation = {"1번 기부", "2번 기부", "3번 기부"};
+    int[] donationImages = {R.drawable.test_image, R.drawable.test_image, R.drawable.test_image};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +132,7 @@ public class DonationActivity extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), ContentDonationItemActivity.class);
                 intent.putExtra("title", donationTitles[position]);
                 intent.putExtra("content", donationContents[position]);
+                intent.putExtra("explanation", donationExplanation[position]);
                 intent.putExtra("image", donationImages[position]);
 
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in);
@@ -286,10 +289,12 @@ public class DonationActivity extends AppCompatActivity
 
             TextView title = view1.findViewById(R.id.titles);
             TextView content = view1.findViewById(R.id.contents);
+            TextView explanation = view1.findViewById(R.id.explanations);
             ImageView image = view1.findViewById(R.id.images);
 
             title.setText(donationTitles[position]);
             content.setText(donationContents[position]);
+            explanation.setText(donationExplanation[position]);
             image.setImageResource(donationImages[position]);
 
             return view1;

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.superchallenge.DonationActivity"
-    tools:showIn="@layout/app_bar_donation">
+    tools:showIn="@layout/app_bar_donation"
+    >
 
     <fragment
         android:id="@+id/nav_host_fragment"
@@ -26,8 +27,15 @@
         android:columnWidth="10dp"
         android:numColumns="2"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="1dp"
-        />
+        android:layout_marginTop="6dp"
+
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"
+
+        android:verticalSpacing="4dp"
+        android:horizontalSpacing="4dp">
+    </GridView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
