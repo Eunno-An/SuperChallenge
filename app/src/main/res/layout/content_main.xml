@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:id="@+id/content_main"
     tools:showIn="@layout/app_bar_main">
 
     <fragment
@@ -41,7 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="rainPoint"
+        android:text="rainpoint"
         android:id="@+id/rainPoint"
         app:layout_constraintTop_toBottomOf="@+id/scanQR"/>
 

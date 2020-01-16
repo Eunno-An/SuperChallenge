@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.GradientDrawable;
+import android.media.MicrophoneInfo;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -21,6 +23,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -50,6 +54,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity
     private String strProfile;
     private String struserID;
     private Bitmap bitmap;//user Image
+    private CoordinatorLayout mainLayout;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     public DatabaseReference databaseUserInfo;
@@ -86,7 +92,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        databaseUserInfo = FirebaseDatabase.getInstance().getReference();
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -171,6 +177,28 @@ public class MainActivity extends AppCompatActivity
         //writeUser(struserID, userCount);
 
 
+        //↓↓↓↓↓↓↓↓↓↓↓fire base로 유저 정보를 입력하는 부분↓↓↓↓↓↓↓↓↓↓↓↓↓
+        final TextView rainPointTextView = findViewById(R.id.rainPoint);
+
+
+        databaseUserInfo = FirebaseDatabase.getInstance().getReference();
+
+        databaseUserInfo.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int rainPoint = (int)(long)dataSnapshot.child(struserID).child("rain").getValue();
+                rainPointTextView.setText("현재 포인트: " + Integer.toString(rainPoint));
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //↑↑↑↑↑↑↑↑↑↑↑fire base로 유저 정보를 입력하는 부분 끝 ↑↑↑↑↑↑↑↑↑↑↑↑
+
         //이미지 view 둥글게 만들기
         //사전에 drawable에 resource파일 추가(custom_imageview.xml)
         ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
@@ -211,7 +239,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
 
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
