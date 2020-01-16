@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 public class ContentDonationItemActivity extends AppCompatActivity {
 
+
+
     ScrollView scrollView;
     TextView title1;
     TextView title2;
