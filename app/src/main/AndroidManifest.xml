@@ -22,8 +22,11 @@
             android:name=".DonationActivity"
             android:label="@string/title_activity_donation"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ContentDonationItemActivity"></activity>
-
+        <activity
+            android:name=".ContentDonationItemActivity"
+            android:label="ContentDonationItemActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
         <activity
             android:name=".NotificationActivity"
             android:label="@string/title_activity_notification"
