@@ -52,6 +52,8 @@ public class DonationActivity extends AppCompatActivity
 
     private String strNickName;
     private String strProfile;
+    private String struserID;
+
     private AppBarConfiguration mAppBarConfiguration;
     private MainActivity userInfo; // userInfo object
     private Bitmap bitmap;
@@ -77,6 +79,7 @@ public class DonationActivity extends AppCompatActivity
         Intent intent = getIntent();
         strNickName = intent.getStringExtra("name");
         strProfile = intent.getStringExtra("profile");
+        struserID = intent.getStringExtra("id"); // long은 id
         Log.e("strNickName in donation", strNickName);
         Log.e("strProfile in donation", strProfile);
 
@@ -136,7 +139,9 @@ public class DonationActivity extends AppCompatActivity
                 intent.putExtra("content", donationContents[position]);
                 intent.putExtra("explanation", donationExplanation[position]);
                 intent.putExtra("image", donationImages[position]);
-
+                intent.putExtra("name", strNickName);
+                intent.putExtra("profile", strProfile);
+                intent.putExtra("id", struserID);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in);
                 startActivity(intent);
             }
