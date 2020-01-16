@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ThankyouActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/animation_view"
+        app:layout_constraintEnd_toEndOf="@+id/animation_view"
+        app:layout_constraintStart_toStartOf="@+id/animation_view"
+        app:layout_constraintTop_toTopOf="@+id/animation_view"
+        app:srcCompat="@drawable/icontransparent" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="300dp"
@@ -15,6 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="filename.json" />
+        app:lottie_rawRes="@raw/animation3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
