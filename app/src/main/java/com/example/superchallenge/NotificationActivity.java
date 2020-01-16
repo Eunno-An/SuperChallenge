@@ -53,6 +53,11 @@ public class NotificationActivity extends AppCompatActivity
     private String struserID;
     private Bitmap bitmap;
     private ListView m_oListView = null;
+
+    // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
+    private long backKeyPressedTime = 0;
+    // 첫 번째 뒤로가기 버튼을 누를때 표시
+    private Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,14 +71,7 @@ public class NotificationActivity extends AppCompatActivity
         struserID = intent.getStringExtra("id"); // long은 id
         Log.e("strNickName in donation", strNickName);
         Log.e("strProfile in donation", strProfile);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -140,7 +138,7 @@ public class NotificationActivity extends AppCompatActivity
         String[] strDate = {"2020-01-09", "2020-01-09", "2020-01-09", "2020-01-10", "2020-01-10",
                 "2020-01-11", "2020-01-11", "2020-01-14", "2020-01-14"};
         String[] title = {"메뉴 UI 개선 [1.5.0] 안내", "구글 맵으로 주변 위치 확인 [1.5.1] 업데이트", "QR 코드 이미지 변경 [1.5.2] 안내", "메뉴 UI 개선 [1.6.0] 안내", "현재 위치 추적 기능 업데이트"
-            ,"구글 맵 icon & 상태 바 color UI 개선 [1.6.1] 안내", "1천만 번째 \"털다\" 회원님을 맞이하며", "로그아웃 기능 추가 [1.7.0]", "카카오톡 내 정보 불러오기 추가[1.7.1]"
+            ,"구글 맵 icon & 상태 바 color UI 개선 [1.6.1] 안내", "천만번째 회원님을 \"털다\"", "로그아웃 기능 추가 [1.7.0]", "카카오톡 내 정보 불러오기 추가[1.7.1]"
         };
         int nDatCnt=0;
         ArrayList<NoticeListItem> oData = new ArrayList<>();
@@ -162,12 +160,20 @@ public class NotificationActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            toast = Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
         }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish();
+            toast.cancel();
+        }
+
+
+
     }
 
 

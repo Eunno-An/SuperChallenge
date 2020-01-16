@@ -60,7 +60,9 @@ public class DonationActivity extends AppCompatActivity
 
     /*수민 추가*/
     GridView gridView;
-
+    private long backKeyPressedTime = 0;
+    // 첫 번째 뒤로가기 버튼을 누를때 표시
+    private Toast toast;
 
     String[] donationTitles = {"개구리가 건강할 수 있는 서울", "한강에 숲을 만들어요!", "어려운 이웃들을 위해 연탄집을 지켜주세요", "면역력이 필요한 아기멍이들을 도와주세요", "콩닥콩닥 심장아! 제2의 심장을 줄게.", "태풍으로 부서진 집", "강원 산불 피해지역에 희망을 심어 주세요", "도시 숲은 우리의 소중한 숨터"};
     String[] donationContents = {"개구리는 날씨가 쌀쌀해지기 시작하는 10월부터 겨울잠에 들어 날이 조금씩 풀리기 시작하는 2월이 됐을 때 다시금 한해살이를 시작하는 양서류입니다. 산개구리들은 따듯한 날씨가 계속되다 큰 비가 한 차례 쏟아지면 추운 겨울이 가고 본격적으로 일어날 시간이 되었다고 생각합니다. 남산자락에서 산개구리가 발견되기 직전인 1월 7일엔 겨울답지 않은 호우가 전국 방방곳곳에 쏟아졌지요. 비가그친 바로 다음날인 1월 9일 남산에서 산개구리가 목격된 것은 결코 우연이 아닌 것입니다.\n\n" +
@@ -113,14 +115,6 @@ public class DonationActivity extends AppCompatActivity
         Log.e("strProfile in donation", strProfile);
 
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -207,12 +201,23 @@ public class DonationActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            toast = Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
         }
+        // 마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
+        // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지나지 않았으면 종료
+        // 현재 표시된 Toast 취소
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish();
+            toast.cancel();
+        }
+
+
+
     }
 
     @Override

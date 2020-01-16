@@ -98,12 +98,17 @@ public class FindMapActivity extends AppCompatActivity
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     boolean needRequest = false;
 
+
+
     // 앱을 실행하기 위해 필요한 퍼미션을 정의합니다.
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};  // 외부 저장소
 
     Location mCurrentLocatiion;
     LatLng currentPosition;
-
+    // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
+    private long backKeyPressedTime = 0;
+    // 첫 번째 뒤로가기 버튼을 누를때 표시
+    private Toast toast;
     private FusedLocationProviderClient mFusedLocationClient;
     LocationRequest locationRequest = new LocationRequest()
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -122,6 +127,9 @@ public class FindMapActivity extends AppCompatActivity
     private String strNickName;
     private String strProfile;
     private String struserID;
+
+    private final long FINISH_INTERVAL_TIME = 2000;
+    private long   backPressedTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,14 +160,7 @@ public class FindMapActivity extends AppCompatActivity
         /*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Google Map End↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -723,19 +724,21 @@ public class FindMapActivity extends AppCompatActivity
     long previousTime = 0;
     @Override
     public void onBackPressed() {
-        long currentTime=System.currentTimeMillis();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        final long FINISH_INTERVAL_TIME = 2000;
+        long backPressedTime = 0;
 
-        if ((currentTime-previousTime)<=INTERVAL_TIME) {
-            super.onBackPressed();
-        } else {
-            previousTime=currentTime;
-            Toast.makeText(this, "한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
+        long currentTime=System.currentTimeMillis();
+
+
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            toast = Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish();
+            toast.cancel();
         }
     }
     @Override

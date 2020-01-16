@@ -8,18 +8,22 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
+            android:textColor="#FF8868"
             android:title="QR code 찍기" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_pin_drop_black_24dp"
+            android:textColor="#FF8868"
             android:title="주변 시설 위치 확인" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_attach_money_black_24dp"
+            android:textColor="#FF8868"
             android:title="기부 투표 선택하기" />
         <item
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_notifications_active_black_24dp"
+            android:textColor="#FF8868"
             android:title="공지사항" />
     </group>
 
@@ -28,6 +32,7 @@
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_logout"
+                android:textColor="#FF8868"
                 android:title="로그아웃" />
 
         </menu>
