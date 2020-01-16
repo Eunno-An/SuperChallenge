@@ -69,8 +69,6 @@ public class MainActivity extends AppCompatActivity
     private AppBarConfiguration mAppBarConfiguration;
     private String strNickName;
     private String strProfile;
-    private long userID;
-    private int userCount=0;
     private String struserID;
     private Bitmap bitmap;//user Image
 
@@ -99,9 +97,9 @@ public class MainActivity extends AppCompatActivity
         Intent intent = getIntent();
         strNickName = intent.getStringExtra("name");
         strProfile = intent.getStringExtra("profile");
-        userID = intent.getLongExtra("id", userID);
-        userCount = intent.getIntExtra("count", userCount);
-        struserID = Long.toString(userID);
+        struserID = intent.getStringExtra("id"); // long은 id
+
+
 
         //0. userID property를 만듬
         //databaseUserInfo.child(struserID).child("count").setValue(0);
@@ -129,7 +127,6 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra("name", strNickName);
                 intent.putExtra("profile", strProfile);
                 intent.putExtra("id", struserID);
-                intent.putExtra("count", userCount);
                 startActivity(intent);
             }
         });
@@ -258,6 +255,7 @@ public class MainActivity extends AppCompatActivity
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_slideshow) {//기부 투표
@@ -265,13 +263,14 @@ public class MainActivity extends AppCompatActivity
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
-            startActivity(intent);
+            intent.putExtra("id", struserID);
             finish();
         } else if (id == R.id.nav_tools) {//게시판(공지사항)
             final Intent intent = new Intent(this, NotificationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_logout) {

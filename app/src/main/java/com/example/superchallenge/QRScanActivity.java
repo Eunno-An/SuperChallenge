@@ -28,7 +28,6 @@ public class QRScanActivity extends AppCompatActivity {
     private String struserID;
     private String strNickName;
     private String strProfile;
-    private int userCount=0;
     private boolean canScan;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     public DatabaseReference databaseUserInfo;
@@ -38,11 +37,10 @@ public class QRScanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qr_scan);
 
 
-
-        strNickName = getIntent().getStringExtra("name");
-        strProfile = getIntent().getStringExtra("profile");
-        struserID = getIntent().getStringExtra("id");
-        userCount = getIntent().getIntExtra("count", userCount);
+        Intent intent = getIntent();
+        strNickName = intent.getStringExtra("name"); //Login,
+        strProfile = intent.getStringExtra("profile"); //Login
+        struserID = intent.getStringExtra("id"); //login
 
         Log.e("struserID: ", struserID);
         Log.e("strNickName In QR: ", strNickName);
@@ -72,7 +70,6 @@ public class QRScanActivity extends AppCompatActivity {
                 intent.putExtra("name", strNickName);
                 intent.putExtra("profile", strProfile);
                 intent.putExtra("id", struserID);
-                intent.putExtra("count", userCount);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
@@ -89,14 +86,13 @@ public class QRScanActivity extends AppCompatActivity {
                                 //하루 횟수를 초과
                                 canScan=false;
                                 Toast.makeText(getApplicationContext(), "하루 5번을 초과하셨어요!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(QRScanActivity.this, MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 intent.putExtra("name", strNickName);
                                 intent.putExtra("profile", strProfile);
                                 intent.putExtra("id", struserID);
-                                intent.putExtra("count", userCount);
                                 startActivity(intent);
-
+                                finish();
                             }
                             else if((long)dataSnapshot.child(struserID).child("count").getValue() < 5){
                                 long tempuserCount = (long)dataSnapshot.child(struserID).child("count").getValue();
@@ -105,14 +101,36 @@ public class QRScanActivity extends AppCompatActivity {
                                 tempuserCount+=1;
                                 databaseUserInfo.child(struserID).child("count").setValue(tempuserCount);
                                 databaseUserInfo.child(struserID).child("rain").setValue(tempuserRain);
-                                canScan = true;
+                                //canScan = true;
+                                Toast.makeText(getApplicationContext(), "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                                final Intent intent = new Intent(getApplicationContext(), AlertSavingActivity.class);
+                                intent.putExtra("name", strNickName);
+                                intent.putExtra("profile", strProfile);
+                                intent.putExtra("id", struserID);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                startActivity(intent);
+                                finish();
                             }
 
                         }
                         else{
-                            databaseUserInfo.child(struserID).child("count").setValue(1);
-                            databaseUserInfo.child(struserID).child("rain").setValue(20);
-                            canScan=true;
+                            Log.e("No user.", "add user");
+                            int count = 1;
+                            int rainPoint = 20;
+                            databaseUserInfo.child(struserID).child("count").setValue(count);
+                            databaseUserInfo.child(struserID).child("rain").setValue(rainPoint);
+                            //canScan=true;
+                            Toast.makeText(getApplicationContext(), "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                            final Intent intent = new Intent(getApplicationContext(), AlertSavingActivity.class);
+                            intent.putExtra("name", strNickName);
+                            intent.putExtra("profile", strProfile);
+                            intent.putExtra("id", struserID);
+                            Log.e("strNickName_in_Alert: ", strNickName);
+                            Log.e("strProfile_in_Alert: ", strProfile);
+                            Log.e("strUserID_in_Alert: ", struserID);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            startActivity(intent);
+                            finish();
                         }
                     }
 
@@ -122,17 +140,17 @@ public class QRScanActivity extends AppCompatActivity {
                     }
                 });
                 Log.e("canScan", canScan+"");
-                if(canScan) {
-                    Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-                    final Intent intent = new Intent(this, AlertSavingActivity.class);
-                    intent.putExtra("name", strNickName);
-                    intent.putExtra("profile", strProfile);
-                    intent.putExtra("id", struserID);
-                    intent.putExtra("count", userCount);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(intent);
-                    finish();
-                }
+//                if(canScan) {
+//                    Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+//                    final Intent intent = new Intent(this, AlertSavingActivity.class);
+//                    intent.putExtra("name", strNickName);
+//                    intent.putExtra("profile", strProfile);
+//                    intent.putExtra("id", struserID);
+//                    intent.putExtra("count", userCount);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                    startActivity(intent);
+//                    finish();
+//                }
                 // todo
 
             }

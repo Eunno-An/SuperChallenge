@@ -104,7 +104,7 @@ public class LoginActivity  extends Activity {
                     Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
                     intentMain.putExtra("name", result.getNickname());
                     intentMain.putExtra("profile", result.getProfileImagePath());
-                    intentMain.putExtra("id", result.getId());
+                    intentMain.putExtra("id", Long.toString(result.getId()));
                     startActivity(intentMain);
                     finish();
                 }
