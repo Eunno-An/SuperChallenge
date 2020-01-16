@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    android:background="#FFFACD">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="QR code 찍기" />
+            android:title="QR code 찍기"
+            android:textColor="#FF8868"
+            android:fontFamily="@font/tmon"/>
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_pin_drop_black_24dp"
-            android:title="주변 시설 위치 확인" />
+            android:title="주변 시설 위치 확인"
+            android:textColor="#FF8868"
+            android:fontFamily="@font/tmon"/>
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_attach_money_black_24dp"
-            android:title="기부 투표 선택하기" />
+            android:title="기부 투표 선택하기"
+            android:textColor="#FF8868"
+            android:fontFamily="@font/tmon"/>
         <item
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_notifications_active_black_24dp"
-            android:title="공지사항" />
+            android:title="공지사항"
+            android:textColor="#FF8868"
+            android:fontFamily="@font/tmon"/>
     </group>
 
     <item android:title="Communicate">
@@ -27,7 +36,9 @@
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_logout"
-                android:title="로그아웃" />
+                android:title="로그아웃"
+                android:textColor="#FF8868"
+                android:fontFamily="@font/tmon"/>
 
         </menu>
     </item>

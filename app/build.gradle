@@ -21,6 +21,7 @@ android {
 }
 apply plugin: 'com.android.application'
 dependencies {
+    implementation 'com.sdsmdg.harjot:rotatingtext:1.0.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
