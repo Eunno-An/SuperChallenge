@@ -29,7 +29,7 @@ public class QRScanActivity extends AppCompatActivity {
     private String strNickName;
     private String strProfile;
     private int userCount=0;
-    private boolean canScan = true;
+    private boolean canScan;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     public DatabaseReference databaseUserInfo;
     @Override
@@ -41,7 +41,7 @@ public class QRScanActivity extends AppCompatActivity {
 
         strNickName = getIntent().getStringExtra("name");
         strProfile = getIntent().getStringExtra("profile");
-        struserID = getIntent().getStringExtra("userID");
+        struserID = getIntent().getStringExtra("id");
         userCount = getIntent().getIntExtra("count", userCount);
 
         Log.e("struserID: ", struserID);
@@ -85,25 +85,18 @@ public class QRScanActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.hasChild(struserID)){ // 만약 유저가 있는 경우
                             if((long)dataSnapshot.child(struserID).child("count").getValue() == 5){// 유저가 횟수를 초과한 경우
+                                Log.d("over 5", "NONO");
                                 //하루 횟수를 초과
                                 canScan=false;
-                                new AlertDialog.Builder(QRScanActivity.this)
-                                        .setMessage("오늘 5번 횟수를 초과하셨네요!\n다음에 이용해주세요~")
-                                        .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "하루 5번을 초과하셨어요!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(QRScanActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.putExtra("name", strNickName);
+                                intent.putExtra("profile", strProfile);
+                                intent.putExtra("id", struserID);
+                                intent.putExtra("count", userCount);
+                                startActivity(intent);
 
-                                        Intent intent = new Intent(QRScanActivity.this, MainActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        intent.putExtra("name", strNickName);
-                                        intent.putExtra("profile", strProfile);
-                                        intent.putExtra("id", struserID);
-                                        intent.putExtra("count", userCount);
-                                        startActivity(intent);
-
-                                    }
-
-                                }).setCancelable(false).show();//back button을 무효화 시키기
                             }
                             else if((long)dataSnapshot.child(struserID).child("count").getValue() < 5){
                                 long tempuserCount = (long)dataSnapshot.child(struserID).child("count").getValue();

@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(MainActivity.this, QRScanActivity.class);
                 intent.putExtra("name", strNickName);
                 intent.putExtra("profile", strProfile);
-                intent.putExtra("userID", struserID);
+                intent.putExtra("id", struserID);
                 intent.putExtra("count", userCount);
                 startActivity(intent);
             }
