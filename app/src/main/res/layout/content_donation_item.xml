@@ -114,6 +114,7 @@
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:hint="기부할 Rain 입력"
+                    android:inputType="number"
                     />
 
                 <TextView
