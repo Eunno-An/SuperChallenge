@@ -13,11 +13,13 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
@@ -72,8 +74,10 @@ public class MainActivity extends AppCompatActivity
     private String struserID;
     private Bitmap bitmap;//user Image
 
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseUserInfo;// ...
+    private ChildEventListener mChildEventListener;
+
+
     //navigation header부분 수정
 
     /*
@@ -83,6 +87,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         //nickNameTextView = findViewById(R.id.nickName_main);
@@ -95,9 +101,16 @@ public class MainActivity extends AppCompatActivity
         userID = intent.getLongExtra("id", userID);
         struserID = Long.toString(userID);
 
-        //Firebase로부터 userID에 해당하는 count를 불러옴
-        databaseReference = firebaseDatabase.getReference(struserID);
+        databaseUserInfo = FirebaseDatabase.getInstance().getReference(); // 자동으로 내 table을 가져옴.
+        //0. userID property를 만듬
+        //databaseUserInfo.child(struserID).child("count").setValue(0);
+        //databaseUserInfo.child(struserID).child("rain").setValue(0);
 
+        //1. userCount를 읽어옴
+        //
+        //databaseUserInfo.child(struserID).child("count").setValue()
+
+        //databaseUserInfo.child("message").child("gbgg").setValue("3"); // message라는 자식이 생기고, message의 자식으로 gbgg가 생기고 gbgg의 값을 2로 만드는 거임.
 
         Log.e("strNickName: ", strNickName);
         Log.e("strProfile: ", strProfile);
@@ -196,7 +209,48 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+    private void initDatabase(){
+        mChildEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        databaseUserInfo.addChildEventListener(mChildEventListener);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        databaseUserInfo.removeEventListener(mChildEventListener);
+    }
+
+
+
+    private void writeUser(String userID, int count){
+        User user = new User(userID, count);
+        databaseUserInfo.child("users").child(userID).setValue(user);
+    }
 
 
 
