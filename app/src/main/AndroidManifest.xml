@@ -9,7 +9,7 @@
 
 
     <application
-        
+        tools:replace="android:label"
         android:name=".App"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
