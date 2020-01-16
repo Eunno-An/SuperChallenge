@@ -101,7 +101,12 @@ public class MainActivity extends AppCompatActivity
         /*intent를 통해 정보 넘겨받음*/
         Intent intent = getIntent();
         strNickName = intent.getStringExtra("name");
-        strProfile = intent.getStringExtra("profile");
+        if(strProfile == null){//프로필 이미지가 없을 경우
+            strProfile = "";
+        }
+        else{//프로필 이미지가 있을 경우
+            strProfile = intent.getStringExtra("profile");
+        }
         struserID = intent.getStringExtra("id"); // long은 id
 
 
