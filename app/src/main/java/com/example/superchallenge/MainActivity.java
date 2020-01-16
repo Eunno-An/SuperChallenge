@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity
     private String struserID;
     private Bitmap bitmap;//user Image
 
-    private DatabaseReference databaseUserInfo;// ...
-    private ChildEventListener mChildEventListener;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    public DatabaseReference databaseUserInfo;
 
 
     //navigation header부분 수정
@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        databaseUserInfo = FirebaseDatabase.getInstance().getReference();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -99,9 +100,9 @@ public class MainActivity extends AppCompatActivity
         strNickName = intent.getStringExtra("name");
         strProfile = intent.getStringExtra("profile");
         userID = intent.getLongExtra("id", userID);
+        userCount = intent.getIntExtra("count", userCount);
         struserID = Long.toString(userID);
 
-        databaseUserInfo = FirebaseDatabase.getInstance().getReference(); // 자동으로 내 table을 가져옴.
         //0. userID property를 만듬
         //databaseUserInfo.child(struserID).child("count").setValue(0);
         //databaseUserInfo.child(struserID).child("rain").setValue(0);
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity
 
         Log.e("strNickName: ", strNickName);
         Log.e("strProfile: ", strProfile);
-        Log.e("strUserID: ", struserID);
+        Log.e("strUserID Main: ", struserID);
 
         //strProfile = intent.getStringExtra("profile");
         //navNickName.setText(strNickName);
@@ -125,6 +126,8 @@ public class MainActivity extends AppCompatActivity
         QRButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this, QRScanActivity.class);
+                intent.putExtra("name", strNickName);
+                intent.putExtra("profile", strProfile);
                 intent.putExtra("userID", struserID);
                 intent.putExtra("count", userCount);
                 startActivity(intent);
@@ -209,50 +212,6 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-    private void initDatabase(){
-        mChildEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        databaseUserInfo.addChildEventListener(mChildEventListener);
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        databaseUserInfo.removeEventListener(mChildEventListener);
-    }
-
-
-
-    private void writeUser(String userID, int count){
-        User user = new User(userID, count);
-        databaseUserInfo.child("users").child(userID).setValue(user);
-    }
-
-
 
 
     @Override
