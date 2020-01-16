@@ -23,6 +23,11 @@ public class ThankyouActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-
+        Intent intent = new Intent(ThankyouActivity.this, MainActivity.class);
+        intent.putExtra("name", strNickName);
+        intent.putExtra("profile", strProfile);
+        intent.putExtra("id", struserID);
+        startActivity(intent);
+        finish();
     }
 }
