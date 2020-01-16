@@ -12,7 +12,7 @@
         android:layout_height="51dp"
         android:layout_marginBottom="112dp"
         android:text="메인으로"
-        android:background="@color/colorPrimary"
+        android:background="@color/babyYellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
