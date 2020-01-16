@@ -40,5 +40,6 @@ public class AlertSavingActivity extends AppCompatActivity {
         intent.putExtra("profile", strProfile);
         intent.putExtra("id", struserID);
         startActivity(intent);
+        finish();
     }
 }

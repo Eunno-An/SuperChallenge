@@ -23,29 +23,29 @@ public class SlideAdapter extends PagerAdapter {
             R.drawable.eco3,
             R.drawable.eco1,
             R.drawable.eco2,
-            R.drawable.eco4,
+
     };
     //list of titles
     public String[] lst_title = {
-            "", "Scan Succeed","Scan Succeed","ScanSucceed"
+            "QR 스캔 성공", "QR 스캔 성공","QR 스캔 성공"
     };
     // list of descriptions
     public String[] lst_description = {
-            "Pollution is one of the biggest killers, affecting more than 100 million worldwide.",
-            "More than 1 billion people worldwide don’t have access to safe drinking water",
-            "5000 people die every day as a result of drinking unclean water.",
-            "There are more than 500 million cars in the world and by 2030 the number will rise to 1 billion. This means pollution level will be more than double.",
+            "환경오염은 매년 전 세계 1억명 이상의 인류에게 영향을 미치는 가장 큰 살인자 중 하나입니다.",
+            "매년 전 세계 10억명 이상의 사람들은 깨끗한 식수를 마시지 못하고 있습니다.",
+            "매일 5000명의 사람들이 오염된 물을 먹고 죽어나가고 있습니다.",
+
     };
     // list of background colors
     public int[] lst_backgroundcolor = {
             Color.rgb(255,240,245),
             Color.rgb(230,230,250),
             Color.rgb(238,223,204),
-            Color.rgb(127,255,212)
+
     };
     //list of pages
     public String[] lst_page = {
-            "1/4","2/4","3/4","4/4"
+            "●○○","○●○","○○●"
     };
 
 public SlideAdapter(Context context) {

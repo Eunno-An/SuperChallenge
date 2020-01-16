@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra("profile", strProfile);
                 intent.putExtra("id", struserID);
                 startActivity(intent);
+                finish();
             }
         });
 
