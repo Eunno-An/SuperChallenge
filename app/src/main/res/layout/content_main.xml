@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:id="@+id/content_main"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    android:background="#FFFACD">
 
     <fragment
         android:id="@+id/nav_host_fragment"
@@ -42,7 +43,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="rainpoint"
+        android:text="RainPoint"
+        android:textColor="#FF8868"
+        android:fontFamily="@font/tmon"
+        android:textSize = "20sp"
         android:gravity="center"
         android:id="@+id/rainPoint"
         app:layout_constraintTop_toBottomOf="@+id/scanQR"/>
@@ -56,6 +60,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="총 기부액: 100421500"
+        android:textColor="#FF8868"
+        android:fontFamily="@font/tmon"
+        android:textSize = "20sp"
         android:gravity="center"
         android:id="@+id/totalDonation"
         app:layout_constraintTop_toBottomOf="@+id/scanQR"/>

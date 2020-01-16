@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ThankyouActivity"
-    >
+    android:background="#FFFACD">
 
     <Button
         android:id="@+id/button"
@@ -13,6 +13,7 @@
         android:layout_height="51dp"
         android:layout_marginBottom="112dp"
         android:text="메인으로"
+        android:fontFamily="@font/tmon"
         android:background="@drawable/custom_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,8 +24,10 @@
         android:layout_width="298dp"
         android:layout_height="52dp"
         android:gravity="center"
-        android:text="누군가의 소중한 물방울이 되어주셨군요!\n오늘도 털다를 사랑해주셔서 감사합니다."
-        android:textColor="#000000"
+        android:text="누군가의 소중한 물방울이 되어주셨군요!"
+        android:textSize="15sp"
+        android:textColor="#FF8868"
+        android:fontFamily="@font/tmon"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -38,7 +41,8 @@
         android:text="감사합니다"
         android:textSize="30sp"
         android:gravity="center"
-        android:textColor="#000000"
+        android:textColor="#FF8868"
+        android:fontFamily="@font/tmon"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/animation_view"
         app:layout_constraintEnd_toEndOf="@+id/animation_view"
