@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 public class ContentDonationItemActivity extends AppCompatActivity {
 
-    TextView text1;
-    TextView text2;
+    TextView title;
+    TextView content;
     ImageView image;
 
     @Override
@@ -19,12 +19,13 @@ public class ContentDonationItemActivity extends AppCompatActivity {
         setContentView(R.layout.content_donation_item);
 
         image = findViewById(R.id.image_data);
-        text1 = findViewById(R.id.title_data);
-        text2 = findViewById(R.id.content_data);
+        title = findViewById(R.id.title_data);
+        content = findViewById(R.id.content_data);
 
         Intent intent = getIntent();
-        text1.setText(intent.getStringExtra("text1"));
-        text2.setText(intent.getStringExtra("text2"));
+
         image.setImageResource(intent.getIntExtra("image", 0));
+        title.setText(intent.getStringExtra("title"));
+        content.setText(intent.getStringExtra("content"));
     }
 }

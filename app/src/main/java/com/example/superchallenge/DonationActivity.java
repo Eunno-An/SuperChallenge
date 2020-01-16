@@ -131,7 +131,8 @@ public class DonationActivity extends AppCompatActivity
                 intent.putExtra("title", donationTitles[position]);
                 intent.putExtra("content", donationContents[position]);
                 intent.putExtra("image", donationImages[position]);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in);
                 startActivity(intent);
             }
         });
