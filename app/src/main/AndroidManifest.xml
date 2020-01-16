@@ -27,10 +27,14 @@
             android:label="ContentDonationItemActivity"
             android:windowSoftInputMode="stateHidden"
             />
+
+
         <activity
             android:name=".NotificationActivity"
             android:label="@string/title_activity_notification"
             android:theme="@style/AppTheme.NoActionBar" />
+        
+
         <activity
             android:name=".FindMapActivity"
             android:label="@string/title_activity_find_map"
