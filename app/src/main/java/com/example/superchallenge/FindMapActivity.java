@@ -3,6 +3,7 @@ package com.example.superchallenge;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -120,6 +121,7 @@ public class FindMapActivity extends AppCompatActivity
     private AppBarConfiguration mAppBarConfiguration;
     private String strNickName;
     private String strProfile;
+    private String struserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +133,7 @@ public class FindMapActivity extends AppCompatActivity
         Intent intent = getIntent();
         strNickName = intent.getStringExtra("name");
         strProfile = intent.getStringExtra("profile");
+        struserID = intent.getStringExtra("id"); // long은 id
 
 
         /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Google Map Start↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
@@ -741,26 +744,26 @@ public class FindMapActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {//현재 Main화면
-            final Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent intent = new Intent(FindMapActivity.this, MainActivity.class);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_gallery) {//주변 시설 위치 확인
 
         } else if (id == R.id.nav_slideshow) {//기부 투표
-            final Intent intent = new Intent(this, DonationActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent intent = new Intent(FindMapActivity.this, DonationActivity.class);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_tools) {//게시판(공지사항)
-            final Intent intent = new Intent(this, NotificationActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent intent = new Intent(FindMapActivity.this, NotificationActivity.class);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         }else if (id == R.id.nav_logout) {

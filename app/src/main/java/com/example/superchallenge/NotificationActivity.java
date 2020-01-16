@@ -50,6 +50,7 @@ public class NotificationActivity extends AppCompatActivity
     private AppBarConfiguration mAppBarConfiguration;
     private String strNickName;
     private String strProfile;
+    private String struserID;
     private Bitmap bitmap;
     private ListView m_oListView = null;
     @Override
@@ -62,6 +63,7 @@ public class NotificationActivity extends AppCompatActivity
         Intent intent = getIntent();
         strNickName = intent.getStringExtra("name");
         strProfile = intent.getStringExtra("profile");
+        struserID = intent.getStringExtra("id"); // long은 id
         Log.e("strNickName in donation", strNickName);
         Log.e("strProfile in donation", strProfile);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -190,24 +192,24 @@ public class NotificationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {//현재 Main화면
-            final Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_gallery) {//주변 시설 위치 확인
-            final Intent intent = new Intent(this, FindMapActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent intent = new Intent(NotificationActivity.this, FindMapActivity.class);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_slideshow) {//기부 투표
-            final Intent intent = new Intent(this, DonationActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent intent = new Intent(NotificationActivity.this, DonationActivity.class);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_tools) {//게시판(공지사항)

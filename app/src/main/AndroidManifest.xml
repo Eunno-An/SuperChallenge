@@ -7,9 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
     <application
-        
         android:name=".App"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -17,13 +15,13 @@
         android:label="털다"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NoticeListItem"></activity>
+        <activity android:name=".ThankyouActivity"></activity>
+        <activity android:name=".NoticeListItem" />
         <activity
             android:name=".DonationActivity"
             android:label="@string/title_activity_donation"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ContentDonationItemActivity"></activity>
-
+        <activity android:name=".ContentDonationItemActivity" />
         <activity
             android:name=".NotificationActivity"
             android:label="@string/title_activity_notification"
@@ -62,12 +60,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBMtxtW01Xyp8LxU3CqpFs2kGH8mAzBDjA" />
-
-
-
     </application>
-
-
-
 
 </manifest>
