@@ -297,6 +297,7 @@ public class MainActivity extends AppCompatActivity
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
             intent.putExtra("id", struserID);
+            startActivity(intent);
             finish();
         } else if (id == R.id.nav_tools) {//게시판(공지사항)
             final Intent intent = new Intent(this, NotificationActivity.class);
