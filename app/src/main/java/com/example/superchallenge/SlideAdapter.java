@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class SlideAdapter extends PagerAdapter {
     Context context;
     LayoutInflater inflater;
@@ -25,7 +27,7 @@ public class SlideAdapter extends PagerAdapter {
     };
     //list of titles
     public String[] lst_title = {
-            "Scan Succeed", "Scan Succeed","Scan Succeed","ScanSucceed"
+            "", "Scan Succeed","Scan Succeed","ScanSucceed"
     };
     // list of descriptions
     public String[] lst_description = {
@@ -36,11 +38,15 @@ public class SlideAdapter extends PagerAdapter {
     };
     // list of background colors
     public int[] lst_backgroundcolor = {
-        Color.rgb(1,188,212),
-        Color.rgb(239,85,85),
-        Color.rgb(238,223,204),
-        Color.rgb(127,255,212)
-};
+            Color.rgb(255,240,245),
+            Color.rgb(230,230,250),
+            Color.rgb(238,223,204),
+            Color.rgb(127,255,212)
+    };
+    //list of pages
+    public String[] lst_page = {
+            "1/4","2/4","3/4","4/4"
+    };
 
 public SlideAdapter(Context context) {
         this.context = context;
@@ -64,10 +70,12 @@ public int getCount() {
         ImageView imgslide  = (ImageView) view.findViewById(R.id.slideimag);
         TextView txttitle = (TextView) view.findViewById(R.id.txttitle);
         TextView description = (TextView) view.findViewById(R.id.txtdescription);
+        TextView page = (TextView) view.findViewById(R.id.page);
         layoutslide.setBackgroundColor(lst_backgroundcolor[position]);
         imgslide.setImageResource(lst_images[position]);
         txttitle.setText(lst_title[position]);
         description.setText(lst_description[position]);
+        page.setText(lst_page[position]);
         container.addView(view);
         return view;
     }
