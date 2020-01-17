@@ -143,9 +143,6 @@ public class DonationActivity extends AppCompatActivity
         TextView navProfile = (TextView)headerView.findViewById(R.id.email);
         navProfile.setText(strProfile);
 
-        ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
-        GradientDrawable drawable = (GradientDrawable)getApplicationContext().getDrawable(R.drawable.custom_imageview);
-        imageView.setBackground(drawable);
 
         /*수민 추가*/
         /*그리드뷰 작업*/
@@ -170,6 +167,10 @@ public class DonationActivity extends AppCompatActivity
             }
         });
         //안드로이드에서는 반드시 네트워크와 관련된 작업을 작업 Thread를 생성하여 해야 한다.
+        ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
+        GradientDrawable drawable = (GradientDrawable)getApplicationContext().getDrawable(R.drawable.custom_imageview);
+        imageView.setBackground(drawable);
+        imageView.setClipToOutline(true);
         Thread mThread = new Thread(){
             @Override
             public void run(){
@@ -202,21 +203,6 @@ public class DonationActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
 
-        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-            backKeyPressedTime = System.currentTimeMillis();
-            toast = Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
-            toast.show();
-            return;
-        }
-        // 마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
-        // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지나지 않았으면 종료
-        // 현재 표시된 Toast 취소
-        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            finish();
-            toast.cancel();
-        }
-
-
 
     }
 
@@ -247,26 +233,26 @@ public class DonationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {//현재 Main화면
-            final Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent intent = new Intent(DonationActivity.this, MainActivity.class);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_gallery) {//주변 시설 위치 확인
-            final Intent intent = new Intent(this, FindMapActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent intent = new Intent(DonationActivity.this, FindMapActivity.class);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_slideshow) {//기부 투표
 
         } else if (id == R.id.nav_tools) {//게시판(공지사항)
-            final Intent intent = new Intent(this, NotificationActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent intent = new Intent(DonationActivity.this, NotificationActivity.class);
             intent.putExtra("name", strNickName);
             intent.putExtra("profile", strProfile);
+            intent.putExtra("id", struserID);
             startActivity(intent);
             finish();
         }else if (id == R.id.nav_logout) {
@@ -286,8 +272,8 @@ public class DonationActivity extends AppCompatActivity
                         @Override
                         public void onCompleteLogout() {
                             Intent intent = new Intent(DonationActivity.this, LoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            finish();
                         }
                     });
                 }

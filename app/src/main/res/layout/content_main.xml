@@ -59,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="총 기부액: 100421500"
+        android:text="누적 기부액: 100,421,500"
         android:textColor="#FF8868"
         android:fontFamily="@font/tmon"
         android:textSize = "20sp"

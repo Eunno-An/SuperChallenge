@@ -71,6 +71,7 @@ public int getCount() {
         TextView txttitle = (TextView) view.findViewById(R.id.txttitle);
         TextView description = (TextView) view.findViewById(R.id.txtdescription);
         TextView page = (TextView) view.findViewById(R.id.page);
+
         layoutslide.setBackgroundColor(lst_backgroundcolor[position]);
         imgslide.setImageResource(lst_images[position]);
         txttitle.setText(lst_title[position]);
