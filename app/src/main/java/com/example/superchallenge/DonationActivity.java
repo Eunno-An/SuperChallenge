@@ -1,6 +1,7 @@
 package com.example.superchallenge;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -33,6 +34,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -164,6 +166,9 @@ public class DonationActivity extends AppCompatActivity
                 intent.putExtra("id", struserID);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in);
                 startActivity(intent);
+
+
+
             }
         });
         //안드로이드에서는 반드시 네트워크와 관련된 작업을 작업 Thread를 생성하여 해야 한다.
