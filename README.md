@@ -37,6 +37,8 @@ https://trello.com/b/HA80Z1Aj/tabilitys-public-start-up-roadmap?menu=filter&filt
 6. 짧막한 애니메이션 추가
     참조: https://googry.tistory.com/13
     Airbnb에서 제공하는 Lottie 라이브러리 사용.
+    build.gradle에 dependency 추가
+    compile 'com.airbnb.android:lottie:2.1.0'
     https://lottiefiles.com/ <- json 파일 다운로드
     res 하위 폴더에 raw 폴더를 생성하고, 거기에 .json 파일을 추가할 수 있다.
     (json이란? JSON(제이슨[1], JavaScript Object Notation)은 속성-값 쌍( attribute–value pairs and array data types (or any other serializable value)) 
