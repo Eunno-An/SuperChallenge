@@ -40,6 +40,19 @@ https://trello.com/b/HA80Z1Aj/tabilitys-public-start-up-roadmap?menu=filter&filt
     https://lottiefiles.com/ <- json 파일 다운로드
     res 하위 폴더에 raw 폴더를 생성하고, 거기에 .json 파일을 추가할 수 있다.
     (json이란? JSON(제이슨[1], JavaScript Object Notation)은 속성-값 쌍( attribute–value pairs and array data types (or any other serializable value)) 
+    
+    그리고 해당 layout파일에 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/애니메이션 파일 이름" />
+        이렇게 하면 된다.
     또는 "키-값 쌍"으로 이루어진 데이터 오브젝트를 전달하기 위해
     인간이 읽을 수 있는 텍스트를 사용하는 개방형 표준 포맷이다.)
 
