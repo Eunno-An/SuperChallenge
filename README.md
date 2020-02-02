@@ -22,6 +22,11 @@ https://trello.com/b/HA80Z1Aj/tabilitys-public-start-up-roadmap?menu=filter&filt
     firebaseDatabase.addListenerForSingleValueEvent(...)를 해주게 되면 dataSnapShot이라는 객체를 통해 getValue를 할 수 있음.
     
 3. GoogleMap API
+  참고:https://mailmail.tistory.com/18?category=719923
+  1) manifest에 API key 넣기
+  2)build.gradle(Module:app)에 map service compile 넣기
+  3) activity_main.xml에 fragment 생성
+  4) Activity에서 GoogleMap에 대한 기능적 설계
   마커 이미지 변경
         BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.icon_main);
         Bitmap b=bitmapdraw.getBitmap();
