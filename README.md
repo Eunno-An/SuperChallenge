@@ -1,7 +1,7 @@
 # SuperChallenge
 
 인하대 주최 슈퍼챌린지 해커톤 2020 최우수상 수상작
-[포스터.pdf](https://github.com/Eunno-An/SuperChallenge/files/7374220/default.pdf)
+
 
 트렐로:
 https://trello.com/b/HA80Z1Aj/tabilitys-public-start-up-roadmap?menu=filter&filter=label:none
