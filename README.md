@@ -1,7 +1,8 @@
 # SuperChallenge
 
-인하대 주최 슈퍼챌린지 해커톤 2020 최우수상 수상작
 
+인하대 주최 슈퍼챌린지 해커톤 2020 최우수상 수상작
+https://news.mt.co.kr/mtview.php?no=2020012214283060478
 
 트렐로:
 https://trello.com/b/HA80Z1Aj/tabilitys-public-start-up-roadmap?menu=filter&filter=label:none
